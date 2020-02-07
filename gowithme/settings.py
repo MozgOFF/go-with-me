@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'account',
+    'phonenumber_field',
     'rest_framework',
     'djoser',
+    
 ]
 
 MIDDLEWARE = [
@@ -108,6 +111,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }
+
+AUTH_USER_MODEL = 'account.User'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
