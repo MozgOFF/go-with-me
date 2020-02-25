@@ -1,0 +1,10 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0111",
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "python.pythonPath": "C:\\Users\\4kuan\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
+}

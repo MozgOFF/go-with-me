@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import ugettext_lazy as _
 
-class UserManager(BaseUserManager):
 
+class UserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, phone, password, **extra_fields):
@@ -31,8 +31,8 @@ class UserManager(BaseUserManager):
 
         return self._create_user(phone, password, **extra_fields)
 
-class User(AbstractUser):
 
+class User(AbstractUser):
     username = None
 
     phone = PhoneNumberField(unique=True, help_text='Phone number')
