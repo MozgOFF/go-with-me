@@ -9,7 +9,7 @@ User = get_user_model()
 class Event(models.Model):
     event_title = models.CharField(verbose_name="Event title", max_length=32)
     event_brief_description = models.CharField(verbose_name="Brief description", max_length=64)
-    event_date = models.DateTimeField(verbose_name="Event date and time", null=False)
+    event_date = models.DateTimeField(verbose_name="Event date and time", null=False, default=datetime.now)
     EVENT_TYPES = (
         (1, "Charity"),
         (2, "Party"),
@@ -36,4 +36,4 @@ class Event(models.Model):
     event_user = models.ForeignKey(User, verbose_name="Event user", on_delete=models.CASCADE)
     # created_at = models.DateTimeField(auto_now_add=True)
     # created_at = models.DateTimeField(default=datetime.now)
-    # updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
