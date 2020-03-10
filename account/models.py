@@ -74,4 +74,4 @@ class OTP(models.Model):
         return code
 
     def __str__(self):
-        return "{} - code: {}".format(self.phone, self.code)
+        return "{} - verified: {}".format(self.phone, self.verified)
