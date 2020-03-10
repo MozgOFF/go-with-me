@@ -40,8 +40,7 @@ INSTALLED_APPS = [
 
     'phonenumber_field',
     'rest_framework',
-    'djoser',
-
+    
     'account',
     'event',
 ]
