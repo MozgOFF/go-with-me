@@ -26,6 +26,11 @@ class UserCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("email should be unique")
         return BaseUserManager.normalize_email(value)
 
+    def validate_phone(self, value):
+        verifiedPhone = OTP.objects.filter(phone=value)
+        if not verifiedPhone.exists() or not verifiedPhone.first().verified:
+            raise serializers.ValidationError("Phone is not verified")
+        return value
 
     def create(self, validated_data):
         phone = validated_data['phone']
@@ -95,7 +100,7 @@ class ConfirmPhoneSerializer(serializers.Serializer):
             raise serializers.ValidationError("Time is up")
 
         otp.verified = True
-
+        otp.save()
         return otp
 
 class SMSMessageSerializer(serializers.ModelSerializer):
