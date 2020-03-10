@@ -1,8 +1,8 @@
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import ugettext_lazy as _
-
+import random
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -44,3 +44,34 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.phone.__str__()
+
+class SMSMessage(models.Model):
+    content = models.CharField(verbose_name="Content", max_length=255, editable=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.content.__str__()
+
+class OTP(models.Model):
+    phone = PhoneNumberField(unique=True, help_text='Phone number')
+    code = models.CharField(verbose_name='Verification code', max_length=4)
+    verified = models.BooleanField(verbose_name="Verified", default=False)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    @classmethod
+    def generate(cls, phone: PhoneNumberField):
+        code = random.randint(1000, 9999)
+        if cls.objects.filter(phone=phone).exists():
+            obj = cls.objects.get(phone=phone)
+            obj.code = code
+            obj.save()
+        else:
+            instance = cls(phone=phone, code=code)
+            instance.save()
+        return code
+
+    def __str__(self):
+        return "{} - verified: {}".format(self.phone, self.verified)
