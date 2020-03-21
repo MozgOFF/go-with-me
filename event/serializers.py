@@ -4,19 +4,20 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
 
+
 class EventCreateSerializer(serializers.ModelSerializer):
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     # categories = CategorySerializer(many=True)
     class Meta:
         model = Event
         fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
-        
-
 
 # class EventDetailSerializer(serializers.ModelSerializer):
 #     class Meta:
