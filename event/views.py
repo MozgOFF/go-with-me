@@ -1,13 +1,12 @@
-# from rest_framework import generics
-# from rest_framework.permissions import IsAuthenticated
-# from event.serializers import EventDetailSerializer, EventCreateSerializer, EventUpdateDetailSerializer, \
-#     EventArchiveSerializer
-# from .models import Event
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from event.serializers import EventCreateSerializer
+from .models import Event
 
 
-# class EventCreateView(generics.CreateAPIView):
-#     permission_classes = (IsAuthenticated,)
-#     serializer_class = EventCreateSerializer
+class EventCreateView(generics.CreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = EventCreateSerializer
 
 
 # class EventListView(generics.ListAPIView):
