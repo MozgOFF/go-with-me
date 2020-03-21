@@ -1,6 +1,6 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from event.serializers import EventCreateSerializer
+from event.serializers import EventCreateSerializer, EventDetailSerializer
 from .models import Event
 
 
@@ -9,9 +9,9 @@ class EventCreateView(generics.CreateAPIView):
     serializer_class = EventCreateSerializer
 
 
-# class EventListView(generics.ListAPIView):
-#     serializer_class = EventDetailSerializer
-#     queryset = Event.objects.all()
+class EventListView(generics.ListAPIView):
+    queryset = Event.objects.filter(is_active=True)
+    serializer_class = EventDetailSerializer
 
 
 # class EventDetailView(generics.RetrieveUpdateDestroyAPIView):

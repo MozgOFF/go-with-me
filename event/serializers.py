@@ -8,7 +8,7 @@ User = get_user_model()
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['id', 'name']
 
 
 class EventCreateSerializer(serializers.ModelSerializer):
@@ -19,11 +19,13 @@ class EventCreateSerializer(serializers.ModelSerializer):
         model = Event
         fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
 
-# class EventDetailSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Event
-#         fields = '__all__'
 
+class EventDetailSerializer(serializers.ModelSerializer):
+    categories = CategorySerializer(many=True)
+
+    class Meta:
+        model = Event
+        fields = ['id', 'title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
 
 # class EventCreateSerializer(serializers.ModelSerializer):
 #     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
