@@ -14,9 +14,9 @@ class EventListView(generics.ListAPIView):
     serializer_class = EventDetailSerializer
 
 
-# class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
-#     serializer_class = EventDetailSerializer
-#     queryset = Event.objects.all()
+class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Event.objects.filter(is_active=True)
+    serializer_class = EventDetailSerializer
 
 
 # class EventDetailUpdate(generics.UpdateAPIView):
