@@ -1,30 +1,49 @@
 from rest_framework import serializers
-from event.models import Event
+from event.models import Event, Category
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 
-class EventDetailSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Event
-        fields = '__all__'
+        model = Category
+        fields = ['id', 'name']
 
 
 class EventCreateSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    # categories = CategorySerializer(many=True)
+    class Meta:
+        model = Event
+        fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
+
+
+class EventDetailSerializer(serializers.ModelSerializer):
+    categories = CategorySerializer(many=True)
 
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = ['id', 'title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
+
+# class EventCreateSerializer(serializers.ModelSerializer):
+#     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+#     class Meta:
+#         model = Event
+#         fields = '__all__'
 
 
-class EventUpdateDetailSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+# class EventUpdateDetailSerializer(serializers.ModelSerializer):
+#     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
-    class Meta:
-        model = Event
-        fields = ('event_brief_description', 'event_title', 'event_date', 'event_type',)
+#     class Meta:
+#         model = Event
+#         fields = ('event_brief_description', 'event_title', 'event_date', 'event_type',)
 
 
-class EventArchiveSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = ('event_state',)
+# class EventArchiveSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Event
+#         fields = ('event_state',)
