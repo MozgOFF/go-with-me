@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/comment/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/comment/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gowithme/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gowithme/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gowithme/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gowithme/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +77,7 @@
       <updated>1585422275939</updated>
       <workItem from="1585422277941" duration="225000" />
       <workItem from="1585422512126" duration="125000" />
-      <workItem from="1585422645405" duration="396000" />
+      <workItem from="1585422645405" duration="495000" />
     </task>
     <task id="LOCAL-00001" summary="idea trash">
       <created>1585422471721</created>
@@ -89,7 +86,21 @@
       <option name="project" value="LOCAL" />
       <updated>1585422471721</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="create comment app">
+      <created>1585423061079</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585423061079</updated>
+    </task>
+    <task id="LOCAL-00003" summary="create comment app">
+      <created>1585423074417</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585423074417</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,13 +108,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idea trash" />
-    <option name="LAST_COMMIT_MESSAGE" value="idea trash" />
+    <MESSAGE value="create comment app" />
+    <MESSAGE value="WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585423060698">
+    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585423085078">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423060698" />
+    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423085078" />
     <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585422440225">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
