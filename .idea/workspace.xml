@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/sk_comment" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ZlmuKDg0NlX5HKPMlqI3AunzgF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="" />
+      <created>1585422275939</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585422275939</updated>
+      <workItem from="1585422277941" duration="225000" />
+      <workItem from="1585422512126" duration="125000" />
+      <workItem from="1585422645405" duration="9927000" />
+    </task>
+    <task id="LOCAL-00001" summary="idea trash">
+      <created>1585422471721</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1585422471721</updated>
+    </task>
+    <task id="LOCAL-00002" summary="create comment app">
+      <created>1585423061079</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1585423061079</updated>
+    </task>
+    <task id="LOCAL-00003" summary="create comment app">
+      <created>1585423074417</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1585423074417</updated>
+    </task>
+    <task id="LOCAL-00004" summary="register comment app">
+      <created>1585423160118</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1585423160118</updated>
+    </task>
+    <task id="LOCAL-00005" summary="event's comments">
+      <created>1585428239231</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1585428239231</updated>
+    </task>
+    <task id="LOCAL-00006" summary="event's comments">
+      <created>1585465069785</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465069785</updated>
+    </task>
+    <task id="LOCAL-00007" summary="event's comments">
+      <created>1585465691439</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465691439</updated>
+    </task>
+    <task id="LOCAL-00008" summary="event's comments">
+      <created>1585465721585</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465721585</updated>
+    </task>
+    <task id="LOCAL-00009" summary="WIP">
+      <created>1585465808198</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465808198</updated>
+    </task>
+    <task id="LOCAL-00010" summary="migrations">
+      <created>1585465874939</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465874939</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="idea trash" />
+    <MESSAGE value="create comment app" />
+    <MESSAGE value="register comment app" />
+    <MESSAGE value="event's comments" />
+    <MESSAGE value="WIP" />
+    <MESSAGE value="migrations" />
+    <option name="LAST_COMMIT_MESSAGE" value="migrations" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1585423569494">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423569494" />
+    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585465874410">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465874410" />
+    <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585466057847">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1288" y="-908" key="DiffContextDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585466057847" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1585428173866">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428173866" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1585428173866">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428173866" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1585428173866">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428173866" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1585428173866">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428173866" />
+    <state x="1622" y="-844" key="MultipleFileMergeDialog" timestamp="1585465942416">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1622" y="-844" key="MultipleFileMergeDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465942416" />
+    <state x="1411" y="-1080" width="998" height="877" key="SettingsEditor" timestamp="1585465954629">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1411" y="-1080" width="998" height="877" key="SettingsEditor/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465954629" />
+    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2" timestamp="1585465881346">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465881346" />
+    <state x="1606" y="-736" key="com.intellij.ide.util.TipDialog" timestamp="1585422645585">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1606" y="-736" key="com.intellij.ide.util.TipDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585422645585" />
+    <state x="1719" y="-643" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585465849797">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1719" y="-643" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465849797" />
+    <state x="1691" y="-847" key="git4idea.branch.GitSmartOperationDialog" timestamp="1585465936581">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1691" y="-847" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465936581" />
+    <state x="1631" y="-769" key="git4idea.merge.GitPullDialog" timestamp="1585466045153">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1631" y="-769" key="git4idea.merge.GitPullDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585466045153" />
+  </component>
+</project>
