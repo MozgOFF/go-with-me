@@ -154,10 +154,10 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423569494" />
-    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585465729216">
+    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585465840719">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465729216" />
+    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465840719" />
     <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585422440225">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
@@ -190,6 +190,10 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1606" y="-736" key="com.intellij.ide.util.TipDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585422645585" />
+    <state x="1719" y="-643" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585465849797">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1719" y="-643" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465849797" />
     <state x="1691" y="-847" key="git4idea.branch.GitSmartOperationDialog" timestamp="1585465739314">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
