@@ -3,19 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/comment/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/migrations/0002_auto_20200318_2152.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/migrations/0003_auto_20200318_2159.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/migrations/0004_auto_20200321_1413.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/migrations/0002_auto_20200314_0102.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/migrations/0003_auto_20200314_1146.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/event/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/event/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/event/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +81,7 @@
       <updated>1585422275939</updated>
       <workItem from="1585422277941" duration="225000" />
       <workItem from="1585422512126" duration="125000" />
-      <workItem from="1585422645405" duration="5516000" />
+      <workItem from="1585422645405" duration="8914000" />
     </task>
     <task id="LOCAL-00001" summary="idea trash">
       <created>1585422471721</created>
@@ -120,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585423160118</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="event's comments">
+      <created>1585428239231</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1585428239231</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,17 +129,18 @@
     <MESSAGE value="create comment app" />
     <MESSAGE value="WIP" />
     <MESSAGE value="register comment app" />
-    <option name="LAST_COMMIT_MESSAGE" value="register comment app" />
+    <MESSAGE value="event's comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="event's comments" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1585423569494">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423569494" />
-    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585423159758">
+    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585428238814">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423159758" />
+    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428238814" />
     <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585422440225">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
@@ -166,6 +165,10 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1411" y="-1080" width="998" height="877" key="SettingsEditor/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423733391" />
+    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2" timestamp="1585428261640">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428261640" />
     <state x="1606" y="-736" key="com.intellij.ide.util.TipDialog" timestamp="1585422645585">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
