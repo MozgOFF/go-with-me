@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="">
+    <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="event's comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +77,7 @@
       <updated>1585422275939</updated>
       <workItem from="1585422277941" duration="225000" />
       <workItem from="1585422512126" duration="125000" />
-      <workItem from="1585422645405" duration="8914000" />
+      <workItem from="1585422645405" duration="9763000" />
     </task>
     <task id="LOCAL-00001" summary="idea trash">
       <created>1585422471721</created>
@@ -118,7 +114,28 @@
       <option name="project" value="LOCAL" />
       <updated>1585428239231</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="event's comments">
+      <created>1585465069785</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465069785</updated>
+    </task>
+    <task id="LOCAL-00007" summary="event's comments">
+      <created>1585465691439</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465691439</updated>
+    </task>
+    <task id="LOCAL-00008" summary="event's comments">
+      <created>1585465721585</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585465721585</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,10 +154,10 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423569494" />
-    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585428238814">
+    <state x="1535" y="-964" key="CommitChangelistDialog2" timestamp="1585465840719">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428238814" />
+    <state x="1535" y="-964" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465840719" />
     <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585422440225">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
@@ -165,13 +182,21 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1411" y="-1080" width="998" height="877" key="SettingsEditor/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423733391" />
-    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2" timestamp="1585428261640">
+    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2" timestamp="1585465110450">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428261640" />
+    <state x="1502" y="-827" key="Vcs.Push.Dialog.v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465110450" />
     <state x="1606" y="-736" key="com.intellij.ide.util.TipDialog" timestamp="1585422645585">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1606" y="-736" key="com.intellij.ide.util.TipDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585422645585" />
+    <state x="1719" y="-643" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1585465849797">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1719" y="-643" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465849797" />
+    <state x="1691" y="-847" key="git4idea.branch.GitSmartOperationDialog" timestamp="1585465739314">
+      <screen x="950" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="1691" y="-847" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465739314" />
   </component>
 </project>
