@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from event.models import Event, Category
 from django.contrib.auth import get_user_model
+from comment.models import Comment
+from comment.serializers import CommentSerializer
 
 User = get_user_model()
 
@@ -20,30 +22,44 @@ class EventCreateSerializer(serializers.ModelSerializer):
         fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
 
 
-class EventDetailSerializer(serializers.ModelSerializer):
+class EventListSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
 
     class Meta:
         model = Event
-        fields = ['id', 'title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
-
-# class EventCreateSerializer(serializers.ModelSerializer):
-#     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-
-#     class Meta:
-#         model = Event
-#         fields = '__all__'
-
-
-# class EventUpdateDetailSerializer(serializers.ModelSerializer):
-#     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-
-#     class Meta:
-#         model = Event
-#         fields = ('event_brief_description', 'event_title', 'event_date', 'event_type',)
+        fields = ['id',
+                  'title',
+                  'start',
+                  'end',
+                  'price',
+                  'latitude',
+                  'longitude',
+                  'description',
+                  'categories',
+                  'author']
 
 
-# class EventArchiveSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Event
-#         fields = ('event_state',)
+class EventDetailSerializer(serializers.ModelSerializer):
+    categories = CategorySerializer(many=True)
+    # comment_set = CommentSerializer(many=True)
+
+    class Meta:
+        model = Event
+        fields = ['id',
+                  'title',
+                  'start',
+                  'end',
+                  'price',
+                  'latitude',
+                  'longitude',
+                  'description',
+                  'categories',
+                  'author']
+
+
+class EventCommentsSerializer(serializers.ModelSerializer):
+    comment_set = CommentSerializer(many=True)
+
+    class Meta:
+        model = Comment
+        fields = ['comment_set', ]

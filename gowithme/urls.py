@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/account/', include('account.urls')),
     path('api/v1/event/', include('event.urls')),
-    path('api/v1/files/', include('files.urls'))
+    path('api/v1/files/', include('files.urls')),
+    path('api/v1/comment/', include('comment.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
