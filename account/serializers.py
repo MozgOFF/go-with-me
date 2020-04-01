@@ -119,3 +119,10 @@ class SMSMessageSerializer(serializers.ModelSerializer):
     class Meta(object):
         model = SMSMessage
         fields = ('content',)
+
+
+class ProfileInfoSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = '__all__'

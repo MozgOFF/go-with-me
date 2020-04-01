@@ -1,5 +1,5 @@
 from django.core.exceptions import ImproperlyConfigured
-from rest_framework import response, decorators, permissions, status, viewsets
+from rest_framework import response, decorators, permissions, status, viewsets, generics
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from .serializers import (
@@ -9,8 +9,8 @@ from .serializers import (
     CheckPhoneSerializer,
     SMSMessageSerializer,
     ConfirmPhoneSerializer,
+    ProfileInfoSerializer,
 )
-
 from .models import SMSMessage
 
 User = get_user_model()
@@ -83,3 +83,12 @@ class AuthViewSet(viewsets.GenericViewSet):
         serializer.save()
 
         return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class MyInfoView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = ProfileInfoSerializer
+
+    def get(self, request, *args, **kwargs):
+        user = ProfileInfoSerializer(request.user)
+        return response.Response(data=user.data)
