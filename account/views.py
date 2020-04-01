@@ -23,7 +23,6 @@ class AuthViewSet(viewsets.GenericViewSet):
         'password_change': PasswordChangeSerializer,
         'check_phone': CheckPhoneSerializer,
         'confirm_phone': ConfirmPhoneSerializer,
-
     }
 
     def get_serializer_class(self):
@@ -36,9 +35,9 @@ class AuthViewSet(viewsets.GenericViewSet):
 
     @decorators.action(methods=['POST'], detail=False, permission_classes=[permissions.AllowAny, ])
     def register(self, request):
-        serialier = self.get_serializer(data=request.data)
-        serialier.is_valid(raise_exception=True)
-        user = serialier.save()
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
         refresh = RefreshToken.for_user(user)
         res = {
             'refresh': str(refresh),

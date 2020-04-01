@@ -10,6 +10,6 @@ appname = 'account'
 urlpatterns = [
     path('login', TokenObtainPairView.as_view()),
     path('refresh', TokenRefreshView.as_view()),
-] 
+]
 
 urlpatterns += router.urls
