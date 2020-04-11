@@ -15,6 +15,7 @@ from event.serializers import (
     EventListSerializer,
 )
 from .models import SMSMessage, Friendships
+from event.models import Event
 
 User = get_user_model()
 
@@ -101,7 +102,7 @@ class FollowingView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
-        query_set = User.objects.filter(following=request.user)
+        query_set = User.objects.filter(followers=request.user)
         print("--------->", query_set)
         following = ProfileInfoSerializer(query_set, many=True)
         return response.Response(data=following.data)
@@ -111,7 +112,7 @@ class FollowersView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
-        query_set = User.objects.filter(followers=request.user)
+        query_set = User.objects.filter(following=request.user)
         followers = ProfileInfoSerializer(query_set, many=True)
         return response.Response(data=followers.data)
 
@@ -123,3 +124,28 @@ class MyEventsView(generics.ListAPIView):
         query_set = request.user.event_set
         events = EventListSerializer(query_set, many=True)
         return response.Response(data=events.data)
+
+
+class FollowingEventsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        print("--------->", request.user.followers)
+        query_set_followers = User.objects.filter(followers=request.user)
+        query_set = Event.objects.filter(author__in=query_set_followers)
+        events = EventListSerializer(query_set, many=True)
+        return response.Response(data=events.data)
+
+
+class ProfileDetailsView(generics.RetrieveAPIView):
+    queryset = User.objects.filter()
+    serializer_class = ProfileInfoSerializer
+
+
+class SubscribeView(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        user = User.objects.get(id=kwargs.get('pk'))
+        request.user.followers.add(user)
+        return response.Response(status=status.HTTP_204_NO_CONTENT)

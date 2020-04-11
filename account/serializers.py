@@ -129,7 +129,7 @@ class ProfileInfoSerializer(serializers.ModelSerializer):
         exclude = ['password',
                    'groups',
                    'user_permissions',
-                   'following',
+                   'followers',
                    'date_joined',
                    'is_active',
                    'is_staff',
