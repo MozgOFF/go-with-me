@@ -37,6 +37,10 @@ class User(AbstractUser):
     username = None
 
     phone = PhoneNumberField(unique=True, help_text='Phone number')
+    following = models.ManyToManyField('self',
+                                       through='Friendships',
+                                       related_query_name='followers',
+                                       through_fields=('from_user', 'to_user'))
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
@@ -45,6 +49,18 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.phone.__str__()
+
+
+class Friendships(models.Model):
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_user')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_user')
+    isAccepted = models.BooleanField(default=False)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return "{} -> {}".format(self.from_user.phone, self.to_user.phone)
 
 
 class SMSMessage(models.Model):

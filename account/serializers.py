@@ -125,4 +125,14 @@ class ProfileInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['password',
+                   'groups',
+                   'user_permissions',
+                   'following',
+                   'date_joined',
+                   'is_active',
+                   'is_staff',
+                   'is_superuser',
+                   ]
+

@@ -11,7 +11,7 @@ from .serializers import (
     ConfirmPhoneSerializer,
     ProfileInfoSerializer,
 )
-from .models import SMSMessage
+from .models import SMSMessage, Friendships
 
 User = get_user_model()
 
@@ -92,3 +92,22 @@ class MyInfoView(generics.RetrieveAPIView):
     def get(self, request, *args, **kwargs):
         user = ProfileInfoSerializer(request.user)
         return response.Response(data=user.data)
+
+
+class MyFriendsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        query_set = User.objects.filter(following=request.user)
+        print("--------->", query_set)
+        following = ProfileInfoSerializer(query_set, many=True)
+        return response.Response(data=following.data)
+
+
+class FollowersView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        query_set = User.objects.filter(followers=request.user)
+        followers = ProfileInfoSerializer(query_set, many=True)
+        return response.Response(data=followers.data)
