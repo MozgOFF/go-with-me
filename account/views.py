@@ -11,6 +11,9 @@ from .serializers import (
     ConfirmPhoneSerializer,
     ProfileInfoSerializer,
 )
+from event.serializers import (
+    EventListSerializer,
+)
 from .models import SMSMessage, Friendships
 
 User = get_user_model()
@@ -94,7 +97,7 @@ class MyInfoView(generics.RetrieveAPIView):
         return response.Response(data=user.data)
 
 
-class MyFriendsView(generics.ListAPIView):
+class FollowingView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
@@ -111,3 +114,12 @@ class FollowersView(generics.ListAPIView):
         query_set = User.objects.filter(followers=request.user)
         followers = ProfileInfoSerializer(query_set, many=True)
         return response.Response(data=followers.data)
+
+
+class MyEventsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def list(self, request, *args, **kwargs):
+        query_set = request.user.event_set
+        events = EventListSerializer(query_set, many=True)
+        return response.Response(data=events.data)

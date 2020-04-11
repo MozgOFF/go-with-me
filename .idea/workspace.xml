@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gowithme/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gowithme/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +55,7 @@
       <workItem from="1585422277941" duration="225000" />
       <workItem from="1585422512126" duration="125000" />
       <workItem from="1585422645405" duration="9927000" />
-      <workItem from="1586582444878" duration="4646000" />
+      <workItem from="1586582444878" duration="5705000" />
     </task>
     <task id="LOCAL-00001" summary="idea trash">
       <created>1585422471721</created>
@@ -152,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585751510402</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="followers following">
+      <created>1586604794056</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1586604794056</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +170,8 @@
     <MESSAGE value="migrations" />
     <MESSAGE value="reformat files" />
     <MESSAGE value="retrieve user info" />
-    <option name="LAST_COMMIT_MESSAGE" value="retrieve user info" />
+    <MESSAGE value="followers following" />
+    <option name="LAST_COMMIT_MESSAGE" value="followers following" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1585719807376">
@@ -178,10 +182,10 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423569494" />
-    <state x="2071" y="-851" key="CommitChangelistDialog2" timestamp="1585751509221">
+    <state x="2071" y="-851" key="CommitChangelistDialog2" timestamp="1586604793533">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="2071" y="-851" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585751509221" />
+    <state x="2071" y="-851" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1586604793533" />
     <state x="468" y="14" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1585719976241" />
     <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585466057847">
       <screen x="950" y="-1080" width="1920" height="1040" />
