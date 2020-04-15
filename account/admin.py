@@ -1,7 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.translation import ugettext_lazy as _
-from .models import User, OTP, SMSMessage
+from .models import User, OTP, SMSMessage, Friendships
+
+
+# admin.site.register(User)
+
+class FriendshipsInlineAdmin(admin.TabularInline):
+    model = Friendships
+    fk_name = 'to_user'
 
 
 @admin.register(User)
@@ -24,6 +31,8 @@ class UserAdmin(DjangoUserAdmin):
     list_display = ('phone', 'first_name', 'last_name', 'is_staff')
     search_fields = ('phone', 'first_name', 'last_name')
     ordering = ('phone',)
+    inlines = [FriendshipsInlineAdmin, ]
+
 
 admin.site.register(OTP)
 admin.site.register(SMSMessage)

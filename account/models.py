@@ -4,6 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import ugettext_lazy as _
 import random
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -36,6 +37,10 @@ class User(AbstractUser):
     username = None
 
     phone = PhoneNumberField(unique=True, help_text='Phone number')
+    followers = models.ManyToManyField('self',
+                                       through='Friendships',
+                                       related_query_name='following',
+                                       through_fields=('from_user', 'to_user'))
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
@@ -45,6 +50,19 @@ class User(AbstractUser):
     def __str__(self):
         return self.phone.__str__()
 
+
+class Friendships(models.Model):
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_user')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_user')
+    isAccepted = models.BooleanField(default=False)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return "{} -> {}".format(self.from_user.phone, self.to_user.phone)
+
+
 class SMSMessage(models.Model):
     content = models.CharField(verbose_name="Content", max_length=255, editable=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -52,6 +70,7 @@ class SMSMessage(models.Model):
 
     def __str__(self):
         return self.content.__str__()
+
 
 class OTP(models.Model):
     phone = PhoneNumberField(unique=True, help_text='Phone number')
