@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from event.models import Event, Category
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
 from comment.models import Comment
 from comment.serializers import CommentSerializer
 from files.models import EventImage
@@ -30,6 +31,14 @@ class EventCreateSerializer(serializers.ModelSerializer):
 
 class EventListSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
+    is_saved = serializers.SerializerMethodField()
+
+    def get_is_saved(self, obj):
+        user = self.context['request'].user
+        if user.id is None:
+            return False
+
+        return obj in user.saved_events.get_queryset()
 
     class Meta:
         model = Event
@@ -42,7 +51,8 @@ class EventListSerializer(serializers.ModelSerializer):
                   'longitude',
                   'description',
                   'categories',
-                  'author']
+                  'author',
+                  'is_saved']
 
 
 class EventDetailSerializer(serializers.ModelSerializer):

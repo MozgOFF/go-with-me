@@ -17,6 +17,9 @@ class EventListView(generics.ListAPIView):
     queryset = Event.objects.filter(is_active=True)
     serializer_class = EventListSerializer
 
+    def list(self, request, *args, **kwargs):
+        return super(EventListView, self).list(request)
+
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.filter(is_active=True)
