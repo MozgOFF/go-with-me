@@ -1,16 +1,22 @@
 from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from files.models import EventImage
-from files.serializers import ImageSerializer
+from files.models import EventImage, UserImages
+from files.serializers import EventImageSerializer, UserImageSerializer
 
 
 class EventImageUploadView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, ]
-    serializer_class = ImageSerializer
+    serializer_class = EventImageSerializer
     queryset = EventImage.objects.all()
 
 
-class ImageListView(generics.ListAPIView):
-    serializer_class = ImageSerializer
+class EventImageListView(generics.ListAPIView):
+    serializer_class = EventImageSerializer
     queryset = EventImage.objects.all()
+
+
+class UserImageUploadView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated, ]
+    serializer_class = UserImageSerializer
+    queryset = UserImages.objects.all()

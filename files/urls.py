@@ -1,12 +1,9 @@
 from django.urls import path
-from rest_framework.routers import DefaultRouter
-from files.views import EventImageUploadView, ImageListView
-
-router = DefaultRouter()
-router.register(r'files', EventImageUploadView)
+from files.views import EventImageUploadView, EventImageListView, UserImageUploadView
 
 app_name = 'files'
 urlpatterns = [
     path('event-image/upload', EventImageUploadView.as_view()),
-    path('image/all/', ImageListView.as_view()),
+    path('user-image/upload', UserImageUploadView.as_view()),
+    path('event-image/all/', EventImageListView.as_view()),
 ]
