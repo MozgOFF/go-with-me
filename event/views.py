@@ -1,7 +1,7 @@
 from rest_framework import generics, views, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
+from django.db.models import F
 from event.serializers import EventCreateSerializer, EventDetailSerializer, EventListSerializer
 from .models import Event
 from comment.models import Comment
@@ -24,6 +24,10 @@ class EventListView(generics.ListAPIView):
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.filter(is_active=True)
     serializer_class = EventDetailSerializer
+
+    def get(self, request, *args, **kwargs):
+        Event.objects.filter(id=kwargs['pk']).update(view_counter=F('view_counter')+1)
+        return super(EventDetailView, self).get(request)
 
 
 class EventCommentsView(generics.ListAPIView):

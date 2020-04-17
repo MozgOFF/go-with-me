@@ -69,7 +69,8 @@ class EventDetailSerializer(serializers.ModelSerializer):
                   'longitude',
                   'description',
                   'categories',
-                  'author']
+                  'author',
+                  'view_counter']
 
 
 class EventCommentsSerializer(serializers.ModelSerializer):
