@@ -1,5 +1,5 @@
 from django.urls import path
-from event.views import EventCreateView, EventListView, EventDetailView, EventCommentsView
+from event.views import EventCreateView, EventListView, EventDetailView, EventCommentsView, SaveEventView
 
 app_name = 'event'
 urlpatterns = [
@@ -7,6 +7,7 @@ urlpatterns = [
     path('all/', EventListView.as_view()),
     path('detail/<int:pk>/', EventDetailView.as_view()),
     path('detail/<int:pk>/comments/', EventCommentsView.as_view()),
+    path('<int:pk>/save', SaveEventView.as_view())
     # path('detail/<int:pk>/Update', EventDetailView.as_view()),
     # path('detail/<int:pk>/', EventDetailView.as_view()),
 ]
