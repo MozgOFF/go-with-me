@@ -97,3 +97,5 @@ coverage.*
 !.travis.yml
 !.isort.cfg
 /.idea/workspace.xml
+/.idea/*
+.idea/workspace.xml
