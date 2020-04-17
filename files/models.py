@@ -1,16 +1,27 @@
 from django.db import models
 
-# from account.models import User
-# from event.models import Event
+from event.models import Event
+from gowithme.settings import AUTH_USER_MODEL
 
 
-class Image(models.Model):
-    # title = models.CharField(max_length=255)
-    # file = models.FileField(upload_to='files', max_length=100, blank=True)
-    #
-    # def __unicode__(self):
-    #     return self.title
-    created_at = models.DateTimeField(auto_now_add=True)
-    image_file = models.FileField(upload_to='images', blank=False, null=False)
-    # uploaded_by = models.ForeignKey(User, to_field='id', on_delete=models.CASCADE)
-    # corresponds_to_event = models.ForeignKey(Event, to_field='id', on_delete=models.CASCADE)
+class EventImage(models.Model):
+    image = models.ImageField(upload_to='images/event/%Y/%m/%d/')
+    description = models.TextField(blank=True)
+    event = models.ForeignKey(Event, related_name='images', blank=True, null=True, default=None, on_delete=models.CASCADE)
+    author = models.ForeignKey(AUTH_USER_MODEL, related_name='event_images_uploaded', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return "{}, {}.".format(self.id, self.description[:20])
+
+
+class UserImages(models.Model):
+    image = models.ImageField(upload_to='images/user/%Y/%m/%d/')
+    description = models.TextField(blank=True)
+    user = models.ForeignKey(AUTH_USER_MODEL, related_name='images', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return "{}, {}.".format(self.id, self.description[:20])

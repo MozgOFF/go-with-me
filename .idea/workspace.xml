@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/sk_profile" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,8 +39,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/files/migrations" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\4kuan\PycharmProjects\go-with-me\files\migrations" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -53,7 +62,7 @@
       <workItem from="1585422512126" duration="125000" />
       <workItem from="1585422645405" duration="9927000" />
       <workItem from="1586582444878" duration="12185000" />
-      <workItem from="1586958821823" duration="2679000" />
+      <workItem from="1586958821823" duration="15436000" />
     </task>
     <task id="LOCAL-00001" summary="idea trash">
       <created>1585422471721</created>
@@ -167,7 +176,35 @@
       <option name="project" value="LOCAL" />
       <updated>1586625239756</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="WIP">
+      <created>1586971654810</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1586971654810</updated>
+    </task>
+    <task id="LOCAL-00018" summary="workspace">
+      <created>1586971784450</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1586971784450</updated>
+    </task>
+    <task id="LOCAL-00019" summary="event image model">
+      <created>1587040913020</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1587040913020</updated>
+    </task>
+    <task id="LOCAL-00020" summary="user image model">
+      <created>1587117280635</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1587117280635</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,14 +215,17 @@
     <MESSAGE value="create comment app" />
     <MESSAGE value="register comment app" />
     <MESSAGE value="event's comments" />
-    <MESSAGE value="WIP" />
     <MESSAGE value="migrations" />
     <MESSAGE value="reformat files" />
     <MESSAGE value="retrieve user info" />
     <MESSAGE value="followers following" />
     <MESSAGE value="my events" />
     <MESSAGE value="subscription" />
-    <option name="LAST_COMMIT_MESSAGE" value="subscription" />
+    <MESSAGE value="WIP" />
+    <MESSAGE value="workspace" />
+    <MESSAGE value="event image model" />
+    <MESSAGE value="user image model" />
+    <option name="LAST_COMMIT_MESSAGE" value="user image model" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1585719807376">
@@ -196,11 +236,11 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423569494" />
-    <state x="468" y="14" key="CommitChangelistDialog2" timestamp="1586971757641">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2071" y="-851" key="CommitChangelistDialog2" timestamp="1587117280146">
+      <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="2071" y="-851" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1586625238624" />
-    <state x="468" y="14" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586971757641" />
+    <state x="2071" y="-851" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1587117280146" />
+    <state x="468" y="14" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586971783560" />
     <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585466057847">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
@@ -221,20 +261,20 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585428173866" />
-    <state x="538" y="187" key="MultipleFileMergeDialog" timestamp="1586971615495">
+    <state x="538" y="187" key="MultipleFileMergeDialog" timestamp="1586971812870">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="1622" y="-844" key="MultipleFileMergeDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465942416" />
-    <state x="538" y="187" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1586971615495" />
+    <state x="538" y="187" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1586971812870" />
     <state x="1411" y="-1080" width="998" height="877" key="SettingsEditor" timestamp="1585465954629">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1411" y="-1080" width="998" height="877" key="SettingsEditor/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465954629" />
-    <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1586971327732">
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2" timestamp="1586971924481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="1502" y="-827" key="Vcs.Push.Dialog.v2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465881346" />
-    <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1586971327732" />
+    <state x="442" y="200" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1586971924481" />
     <state x="1606" y="-736" key="com.intellij.ide.util.TipDialog" timestamp="1586958841745">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
@@ -249,14 +289,14 @@
     </state>
     <state x="1691" y="-847" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585465936581" />
     <state x="593" y="185" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1586971609384" />
-    <state x="545" y="246" key="git4idea.merge.GitPullDialog" timestamp="1586971661307">
+    <state x="545" y="246" key="git4idea.merge.GitPullDialog" timestamp="1586971825531">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="1631" y="-769" key="git4idea.merge.GitPullDialog/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585466045153" />
-    <state x="545" y="246" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1586971661307" />
-    <state x="1573" y="-855" width="672" height="678" key="search.everywhere.popup" timestamp="1586602395006">
+    <state x="545" y="246" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1586971825531" />
+    <state x="1573" y="-855" width="672" height="678" key="search.everywhere.popup" timestamp="1587034853303">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="1573" y="-855" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1586602395006" />
+    <state x="1573" y="-855" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1587034853303" />
   </component>
 </project>

@@ -3,6 +3,7 @@ from event.models import Event, Category
 from django.contrib.auth import get_user_model
 from comment.models import Comment
 from comment.serializers import CommentSerializer
+from files.models import EventImage
 
 User = get_user_model()
 
@@ -13,13 +14,18 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 
+class EventImageCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventImage
+        fields = ['id']
+
+
 class EventCreateSerializer(serializers.ModelSerializer):
     author = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
-    # categories = CategorySerializer(many=True)
     class Meta:
         model = Event
-        fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author']
+        fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author', 'images']
 
 
 class EventListSerializer(serializers.ModelSerializer):
@@ -41,7 +47,6 @@ class EventListSerializer(serializers.ModelSerializer):
 
 class EventDetailSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
-    # comment_set = CommentSerializer(many=True)
 
     class Meta:
         model = Event

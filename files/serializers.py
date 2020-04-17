@@ -1,9 +1,19 @@
 from rest_framework import serializers
 
-from files.models import Image
+from .models import EventImage, UserImages
 
 
-class ImageSerializer(serializers.ModelSerializer):
+class EventImageSerializer(serializers.ModelSerializer):
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
-        model = Image
-        fields = ('created_at', 'image_file')
+        model = EventImage
+        fields = ['id', 'image', 'description', 'author']
+
+
+class UserImageSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = UserImages
+        fields = ['id', 'image', 'description', 'user']
