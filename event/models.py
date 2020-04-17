@@ -22,6 +22,7 @@ class Event(models.Model):
     categories = models.ManyToManyField(Category, related_name="events")
     saved_by = models.ManyToManyField(User, related_name='saved_events', related_query_name='saved_events')
     author = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE)
+    view_counter = models.IntegerField(verbose_name='View counter', default=0)
     is_active = models.BooleanField(verbose_name="Is active", default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
