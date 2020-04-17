@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="workspace">
+    <list default="true" id="7bcb7351-cdee-4561-a152-8b379f8700ac" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/event/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/event/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/event/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/files/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/migrations/0001_initial.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/files/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/files/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +42,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/files/migrations" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\4kuan\PycharmProjects\go-with-me\files\migrations" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -59,7 +65,7 @@
       <workItem from="1585422512126" duration="125000" />
       <workItem from="1585422645405" duration="9927000" />
       <workItem from="1586582444878" duration="12185000" />
-      <workItem from="1586958821823" duration="9349000" />
+      <workItem from="1586958821823" duration="15074000" />
     </task>
     <task id="LOCAL-00001" summary="idea trash">
       <created>1585422471721</created>
@@ -187,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586971784450</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="event image model">
+      <created>1587040913020</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1587040913020</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +219,8 @@
     <MESSAGE value="subscription" />
     <MESSAGE value="WIP" />
     <MESSAGE value="workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
+    <MESSAGE value="event image model" />
+    <option name="LAST_COMMIT_MESSAGE" value="event image model" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1585719807376">
@@ -217,10 +231,10 @@
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1657" y="-704" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1585423569494" />
-    <state x="2071" y="-851" key="CommitChangelistDialog2" timestamp="1587040780152">
+    <state x="2071" y="-851" key="CommitChangelistDialog2" timestamp="1587040912612">
       <screen x="950" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="2071" y="-851" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1587040780152" />
+    <state x="2071" y="-851" key="CommitChangelistDialog2/0.0.1536.824/950.-1080.1920.1040@950.-1080.1920.1040" timestamp="1587040912612" />
     <state x="468" y="14" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1586971783560" />
     <state x="1288" y="-908" key="DiffContextDialog" timestamp="1585466057847">
       <screen x="950" y="-1080" width="1920" height="1040" />
