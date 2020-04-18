@@ -20,7 +20,7 @@ class Event(models.Model):
     latitude = models.DecimalField(verbose_name="Latitude", max_digits=10, decimal_places=7)
     longitude = models.DecimalField(verbose_name="Longitude", max_digits=10, decimal_places=7)
     categories = models.ManyToManyField(Category, related_name="events")
-    saved_by = models.ManyToManyField(User, related_name='saved_events', related_query_name='saved_events')
+    saved_by = models.ManyToManyField(User, related_name='saved_events', blank=True, related_query_name='saved_events')
     author = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE)
     view_counter = models.IntegerField(verbose_name='View counter', default=0)
     is_active = models.BooleanField(verbose_name="Is active", default=True)
