@@ -1,24 +1,33 @@
-from rest_framework import generics, views, status
+from rest_framework import generics, views, status, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import F
 from event.serializers import EventCreateSerializer, EventDetailSerializer, EventListSerializer
 from .models import Event
+from .filters import EventFilter
 from comment.models import Comment
 from comment.serializers import CommentSerializer
 
+
+class EventFilteredView:
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
+    filterset_class = EventFilter
+    search_fields = ['title', 'description', ]
+    ordering_fields = ['start', 'view_counter', 'price', 'created']
+    ordering = ['created']
 
 class EventCreateView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = EventCreateSerializer
 
 
-class EventListView(generics.ListAPIView):
+class EventListView(generics.ListAPIView, EventFilteredView):
     queryset = Event.objects.filter(is_active=True)
     serializer_class = EventListSerializer
+    pagination_class = PageNumberPagination
 
-    def list(self, request, *args, **kwargs):
-        return super(EventListView, self).list(request)
 
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
