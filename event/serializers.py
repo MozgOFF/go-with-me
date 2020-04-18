@@ -34,7 +34,10 @@ class EventListSerializer(serializers.ModelSerializer):
     is_saved = serializers.SerializerMethodField()
 
     def get_is_saved(self, obj):
-        user = self.context['request'].user
+        request = self.context.get('request')
+        if request is None:
+            return False
+        user = request.user
         if user.id is None:
             return False
 
@@ -52,7 +55,8 @@ class EventListSerializer(serializers.ModelSerializer):
                   'description',
                   'categories',
                   'author',
-                  'is_saved']
+                  'is_saved',
+                  'view_counter']
 
 
 class EventDetailSerializer(serializers.ModelSerializer):
