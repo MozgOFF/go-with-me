@@ -6,6 +6,10 @@ from event.views import (
     EventCommentsView,
     SaveEventView,
     RemoveEventView,
+    LikeEventView,
+    UnlikeEventView,
+    SubscribeOnEventView,
+    UnsubscribeFromEventView,
 )
 
 app_name = 'event'
@@ -16,4 +20,8 @@ urlpatterns = [
     path('detail/<int:pk>/comments/', EventCommentsView.as_view()),
     path('<int:pk>/saved-add', SaveEventView.as_view()),
     path('<int:pk>/saved-remove', RemoveEventView.as_view()),
+    path('<int:pk>/like', LikeEventView.as_view()),
+    path('<int:pk>/unlike', UnlikeEventView.as_view()),
+    path('<int:pk>/subscribe', SubscribeOnEventView.as_view()),
+    path('<int:pk>/unsubscribe', UnsubscribeFromEventView.as_view()),
 ]

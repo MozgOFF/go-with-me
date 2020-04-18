@@ -16,13 +16,25 @@ class Event(models.Model):
     description = models.CharField(verbose_name="Brief description", max_length=1024)
     start = models.DateTimeField(verbose_name="Event begining")
     end = models.DateTimeField(verbose_name="Event ending")
-    price = models.CharField(verbose_name="Price", max_length=20) 
+    price = models.CharField(verbose_name="Price", max_length=20)
     latitude = models.DecimalField(verbose_name="Latitude", max_digits=10, decimal_places=7)
     longitude = models.DecimalField(verbose_name="Longitude", max_digits=10, decimal_places=7)
     categories = models.ManyToManyField(Category, related_name="events")
     saved_by = models.ManyToManyField(User, related_name='saved_events', blank=True, related_query_name='saved_events')
+    liked_by = models.ManyToManyField(User, related_name='liked_events', blank=True, related_query_name='liked_events')
+    subscribed_by = models.ManyToManyField(User,
+                                           through='SubscriptionOnEvent',
+                                           related_name='subscribed_events',
+                                           blank=True,
+                                           related_query_name='subscribed_events')
     author = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE)
     view_counter = models.IntegerField(verbose_name='View counter', default=0)
     is_active = models.BooleanField(verbose_name="Is active", default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+
+class SubscriptionOnEvent(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    is_accepted_by_author = models.BooleanField(verbose_name="Is accepted by author of event", default=False)

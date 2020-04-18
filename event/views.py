@@ -12,6 +12,9 @@ from comment.serializers import CommentSerializer
 from event.tasks import h
 from datetime import datetime, timedelta
 
+success_data = {'message': 'success'}
+
+
 class EventFilteredView:
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
     filterset_class = EventFilter
@@ -28,7 +31,6 @@ class EventCreateView(generics.CreateAPIView):
         print("EventCreateView create")
         a = h.delay(2, 5)
         print("EventCreateView create ", a.status)
-
         return super(EventCreateView, self).create(request)
 
 
@@ -51,7 +53,7 @@ class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventDetailSerializer
 
     def get(self, request, *args, **kwargs):
-        Event.objects.filter(id=kwargs['pk']).update(view_counter=F('view_counter')+1)
+        Event.objects.filter(id=kwargs['pk']).update(view_counter=F('view_counter') + 1)
         return super(EventDetailView, self).get(request)
 
 
@@ -76,7 +78,7 @@ class SaveEventView(views.APIView):
 
         event.first().saved_by.add(request.user)
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(data=success_data, status=status.HTTP_200_OK)
 
 
 class RemoveEventView(views.APIView):
@@ -87,7 +89,54 @@ class RemoveEventView(views.APIView):
         event = Event.objects.filter(id=pk)
         if event.count() == 0:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
         event.first().saved_by.remove(request.user)
+        return Response(data=success_data, status=status.HTTP_200_OK)
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class LikeEventView(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def post(request, pk):
+        event = Event.objects.filter(id=pk)
+        if event.count() == 0:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        event.first().liked_by.add(request.user)
+        return Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class UnlikeEventView(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def post(request, pk):
+        event = Event.objects.filter(id=pk)
+        if event.count() == 0:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        event.first().liked_by.remove(request.user)
+        return Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class SubscribeOnEventView(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def post(request, pk):
+        event = Event.objects.filter(id=pk)
+        if event.count() == 0:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        event.first().subscribed_by.add(request.user)
+        # TODO notify author
+        return Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class UnsubscribeFromEventView(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    @staticmethod
+    def post(request, pk):
+        event = Event.objects.filter(id=pk)
+        if event.count() == 0:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        event.first().subscribed_by.remove(request.user)
+        return Response(data=success_data, status=status.HTTP_200_OK)
