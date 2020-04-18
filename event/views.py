@@ -9,7 +9,8 @@ from .models import Event
 from .filters import EventFilter
 from comment.models import Comment
 from comment.serializers import CommentSerializer
-
+from event.tasks import h
+from time import sleep
 
 class EventFilteredView:
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
@@ -18,9 +19,17 @@ class EventFilteredView:
     ordering_fields = ['start', 'view_counter', 'price', 'created']
     ordering = ['created']
 
+
 class EventCreateView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = EventCreateSerializer
+
+    def create(self, request, *args, **kwargs):
+        print("EventCreateView create")
+        a = h.delay(2, 5)
+        print("EventCreateView create ", a.status)
+
+        return super(EventCreateView, self).create(request)
 
 
 class EventListView(generics.ListAPIView, EventFilteredView):
@@ -28,6 +37,12 @@ class EventListView(generics.ListAPIView, EventFilteredView):
     serializer_class = EventListSerializer
     pagination_class = PageNumberPagination
 
+    def list(self, request, *args, **kwargs):
+        print("EventListView list()")
+        task = h.delay(2, 5)
+        print(f"id={task.id}, state={task.state}, status={task.status}")
+
+        return super(EventListView, self).list(request)
 
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
