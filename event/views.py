@@ -10,7 +10,7 @@ from .filters import EventFilter
 from comment.models import Comment
 from comment.serializers import CommentSerializer
 from event.tasks import h
-from time import sleep
+from datetime import datetime, timedelta
 
 class EventFilteredView:
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
@@ -39,7 +39,8 @@ class EventListView(generics.ListAPIView, EventFilteredView):
 
     def list(self, request, *args, **kwargs):
         print("EventListView list()")
-        task = h.delay(2, 5)
+        t = datetime.utcnow() + timedelta(seconds=10)
+        task = h.apply_async(eta=t)
         print(f"id={task.id}, state={task.state}, status={task.status}")
 
         return super(EventListView, self).list(request)

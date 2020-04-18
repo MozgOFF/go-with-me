@@ -4,7 +4,5 @@ from celery import shared_task
 
 
 @shared_task
-def h(x, y):
-    sleep(5)
+def h():
     print("<<>><<<<<<<<<<<<<-------------------------------------------------")
-    return x + y
