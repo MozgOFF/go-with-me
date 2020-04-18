@@ -100,41 +100,39 @@ class MyInfoView(generics.RetrieveAPIView):
 
 class FollowingView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ProfileInfoSerializer
 
-    def list(self, request, *args, **kwargs):
-        query_set = User.objects.filter(followers=request.user)
-        print("--------->", query_set)
-        following = ProfileInfoSerializer(query_set, many=True)
-        return response.Response(data=following.data)
+    def get_queryset(self):
+        query_set = User.objects.filter(followers=self.request.user)
+        return query_set
 
 
 class FollowersView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ProfileInfoSerializer
 
-    def list(self, request, *args, **kwargs):
-        query_set = User.objects.filter(following=request.user)
-        followers = ProfileInfoSerializer(query_set, many=True)
-        return response.Response(data=followers.data)
+    def get_queryset(self):
+        query_set = User.objects.filter(following=self.request.user)
+        return query_set
 
 
 class MyEventsView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventListSerializer
 
-    def list(self, request, *args, **kwargs):
-        query_set = request.user.event_set
-        events = EventListSerializer(query_set, many=True)
-        return response.Response(data=events.data)
+    def get_queryset(self):
+        return self.request.user.event_set.get_queryset()
 
 
 class FollowingEventsView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventListSerializer
 
-    def list(self, request, *args, **kwargs):
-        print("--------->", request.user.followers)
+    def get_queryset(self):
+        request = self.request
         query_set_followers = User.objects.filter(followers=request.user)
         query_set = Event.objects.filter(author__in=query_set_followers)
-        events = EventListSerializer(query_set, many=True)
-        return response.Response(data=events.data)
+        return query_set
 
 
 class ProfileDetailsView(generics.RetrieveAPIView):
