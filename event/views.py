@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import F
-from event.serializers import EventCreateSerializer, EventDetailSerializer, EventListSerializer
-from .models import Event
+from event.serializers import EventCreateSerializer, EventDetailSerializer, EventListSerializer, CategorySerializer
+from .models import Event, Category
 from .filters import EventFilter
 from comment.models import Comment
 from comment.serializers import CommentSerializer
@@ -26,12 +26,6 @@ class EventFilteredView:
 class EventCreateView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = EventCreateSerializer
-
-    def create(self, request, *args, **kwargs):
-        print("EventCreateView create")
-        a = h.delay(2, 5)
-        print("EventCreateView create ", a.status)
-        return super(EventCreateView, self).create(request)
 
 
 class EventListView(generics.ListAPIView, EventFilteredView):
@@ -140,3 +134,9 @@ class UnsubscribeFromEventView(views.APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         event.first().subscribed_by.remove(request.user)
         return Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class EventCategoriesView(generics.ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+    pagination_class = None
