@@ -10,6 +10,7 @@ from .views import (
     FollowingEventsView,
     ProfileDetailsView,
     SubscribeView,
+    ViewedEventsView,
 )
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -27,6 +28,7 @@ urlpatterns = [
     path('me/following/events', FollowingEventsView.as_view()),
     path('me/followers', FollowersView.as_view()),
     path('me/events', MyEventsView.as_view()),
+    path('me/viewed-events', ViewedEventsView.as_view())
 ]
 
 urlpatterns += router.urls

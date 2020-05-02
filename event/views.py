@@ -47,7 +47,11 @@ class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventDetailSerializer
 
     def get(self, request, *args, **kwargs):
-        Event.objects.filter(id=kwargs['pk']).update(view_counter=F('view_counter') + 1)
+        event = Event.objects.filter(id=kwargs['pk'])
+        event.update(view_counter=F('view_counter') + 1)
+        if request.user.id is not None:
+            request.user.viewed_events.add(event.first())
+
         return super(EventDetailView, self).get(request)
 
 

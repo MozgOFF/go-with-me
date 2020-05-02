@@ -149,3 +149,14 @@ class SubscribeView(generics.CreateAPIView):
         user = User.objects.get(id=kwargs.get('pk'))
         request.user.followers.add(user)
         return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ViewedEventsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        return self.request.user.viewed_events.all()
+
+
+

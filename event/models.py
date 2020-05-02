@@ -27,9 +27,21 @@ class Event(models.Model):
                                            related_name='subscribed_events',
                                            blank=True,
                                            related_query_name='subscribed_events')
+    viewed_by = models.ManyToManyField(User,
+                                       through='EventViewedByUser',
+                                       related_name='viewed_events',
+                                       related_query_name='viewed_events',
+                                       blank=True)
     author = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE)
     view_counter = models.IntegerField(verbose_name='View counter', default=0)
     is_active = models.BooleanField(verbose_name="Is active", default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+
+class EventViewedByUser(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
