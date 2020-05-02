@@ -25,7 +25,7 @@ SECRET_KEY = 'e5o_)o$2@c_kl%-)*7&rk6iom2d)sshtr+_bf%ptyxk4$u$^s-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_celery_results',
 
     'phonenumber_field',
     'rest_framework',
@@ -141,3 +142,11 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# celery
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+

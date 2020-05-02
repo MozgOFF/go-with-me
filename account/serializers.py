@@ -122,6 +122,21 @@ class SMSMessageSerializer(serializers.ModelSerializer):
 
 
 class ProfileInfoSerializer(serializers.ModelSerializer):
+    events_created_count = serializers.SerializerMethodField()
+    followers_count = serializers.SerializerMethodField()
+    following_count = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_events_created_count(obj):
+        return obj.event_set.all().count()
+
+    @staticmethod
+    def get_followers_count(obj):
+        return User.objects.filter(following=obj).count()
+
+    @staticmethod
+    def get_following_count(obj):
+        return obj.following.all().count()
 
     class Meta:
         model = User
@@ -129,7 +144,7 @@ class ProfileInfoSerializer(serializers.ModelSerializer):
         exclude = ['password',
                    'groups',
                    'user_permissions',
-                   'followers',
+                   'following',
                    'date_joined',
                    'is_active',
                    'is_staff',
