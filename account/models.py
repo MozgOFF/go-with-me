@@ -36,9 +36,10 @@ class User(AbstractUser):
     username = None
 
     phone = PhoneNumberField(unique=True, help_text='Phone number')
-    followers = models.ManyToManyField('self',
+    following = models.ManyToManyField('self',
                                        through='Friendships',
-                                       related_query_name='following',
+                                       related_name='followers',
+                                       related_query_name='followers',
                                        through_fields=('from_user', 'to_user'))
 
     USERNAME_FIELD = 'phone'
