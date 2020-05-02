@@ -33,13 +33,13 @@ class EventListView(generics.ListAPIView, EventFilteredView):
     serializer_class = EventListSerializer
     pagination_class = PageNumberPagination
 
-    def list(self, request, *args, **kwargs):
-        print("EventListView list()")
-        t = datetime.utcnow() + timedelta(seconds=10)
-        task = h.apply_async(eta=t)
-        print(f"id={task.id}, state={task.state}, status={task.status}")
-
-        return super(EventListView, self).list(request)
+    # def list(self, request, *args, **kwargs):
+    #     print("EventListView list()")
+    #     t = datetime.utcnow() + timedelta(seconds=10)
+    #     task = h.apply_async(eta=t)
+    #     print(f"id={task.id}, state={task.state}, status={task.status}")
+    #
+    #     return super(EventListView, self).list(request)
 
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):

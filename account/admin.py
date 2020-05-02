@@ -8,7 +8,7 @@ from .models import User, OTP, SMSMessage, Friendships
 
 class FriendshipsInlineAdmin(admin.TabularInline):
     model = Friendships
-    fk_name = 'to_user'
+    fk_name = 'from_user'
 
 
 @admin.register(User)
