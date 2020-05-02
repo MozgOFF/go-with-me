@@ -103,6 +103,7 @@ class FollowingView(generics.ListAPIView):
     serializer_class = ProfileInfoSerializer
 
     def get_queryset(self):
+        # Взять всех пользователей у кого я подписчик (тоесть мои подписки)
         query_set = User.objects.filter(followers=self.request.user)
         return query_set
 
@@ -112,6 +113,7 @@ class FollowersView(generics.ListAPIView):
     serializer_class = ProfileInfoSerializer
 
     def get_queryset(self):
+        # Взять всех пользователей кто на подписан на меня (тоесть мои подписчики)
         query_set = User.objects.filter(following=self.request.user)
         return query_set
 
