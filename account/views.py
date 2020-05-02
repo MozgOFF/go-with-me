@@ -156,7 +156,7 @@ class ViewedEventsView(generics.ListAPIView):
     serializer_class = EventListSerializer
 
     def get_queryset(self):
-        return self.request.user.viewed_events.all()
+        return self.request.user.viewed_events.all().order_by('updated')
 
 
 
