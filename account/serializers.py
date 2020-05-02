@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model, password_validation
 from django.contrib.auth.models import BaseUserManager
 from phonenumber_field.serializerfields import PhoneNumberField
 from .models import OTP, SMSMessage
+from files.models import UserImages
 from django.utils import timezone
 
 User = get_user_model()
@@ -121,10 +122,18 @@ class SMSMessageSerializer(serializers.ModelSerializer):
         fields = ('content',)
 
 
+class ProfileImageSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = UserImages
+        fields = ['image', 'description']
+
+
 class ProfileInfoSerializer(serializers.ModelSerializer):
     events_created_count = serializers.SerializerMethodField()
     followers_count = serializers.SerializerMethodField()
     following_count = serializers.SerializerMethodField()
+    images = serializers.SerializerMethodField()
+    saved_events_count = serializers.SerializerMethodField()
 
     @staticmethod
     def get_events_created_count(obj):
@@ -137,6 +146,16 @@ class ProfileInfoSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_following_count(obj):
         return obj.following.all().count()
+
+    @staticmethod
+    def get_images(obj):
+        query_set = UserImages.objects.filter(user=obj)
+        serializer = ProfileImageSerializer(query_set, many=True)
+        return serializer.data
+
+    @staticmethod
+    def get_saved_events_count(obj):
+        return obj.saved_events.count()
 
     class Meta:
         model = User

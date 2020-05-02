@@ -42,6 +42,9 @@ class User(AbstractUser):
                                        related_query_name='followers',
                                        through_fields=('from_user', 'to_user'))
 
+    latitude = models.DecimalField(verbose_name="Latitude", max_digits=17, decimal_places=14)
+    longitude = models.DecimalField(verbose_name="Longitude", max_digits=17, decimal_places=14)
+
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
 
