@@ -5,6 +5,7 @@ from django.contrib.auth.models import AnonymousUser
 from comment.models import Comment
 from comment.serializers import CommentSerializer
 from files.models import EventImage
+from account.serializers import ShortProfileInfoSerializer
 
 User = get_user_model()
 
@@ -29,9 +30,21 @@ class EventCreateSerializer(serializers.ModelSerializer):
         fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author', 'images']
 
 
+class EventImageSerializer(serializers.ModelSerializer):
+    class Meta(object):
+        model = EventImage
+        fields = ['image', 'description']
+
+
 class EventListSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
     is_saved = serializers.SerializerMethodField()
+    author = ShortProfileInfoSerializer()
+    images = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_images(obj):
+        return EventImageSerializer(obj.images, many=True).data
 
     def get_is_saved(self, obj):
         request = self.context.get('request')
@@ -56,7 +69,8 @@ class EventListSerializer(serializers.ModelSerializer):
                   'categories',
                   'author',
                   'is_saved',
-                  'view_counter']
+                  'view_counter',
+                  'images']
 
 
 class EventDetailSerializer(serializers.ModelSerializer):

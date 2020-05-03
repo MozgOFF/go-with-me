@@ -128,6 +128,24 @@ class ProfileImageSerializer(serializers.ModelSerializer):
         fields = ['image', 'description']
 
 
+class ShortProfileInfoSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_image(obj):
+        query_set = UserImages.objects.filter(user=obj).first()
+        serializer = ProfileImageSerializer(query_set)
+        return serializer.data
+
+    class Meta:
+        model = User
+        fields = ['id',
+                  'first_name',
+                  'last_name',
+                  'image',
+                  ]
+
+
 class ProfileInfoSerializer(serializers.ModelSerializer):
     events_created_count = serializers.SerializerMethodField()
     followers_count = serializers.SerializerMethodField()
