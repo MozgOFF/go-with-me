@@ -26,10 +26,10 @@ def invite_to_telegram_chat(title, username):
     api_hash = '8fd6064629c2fe25b79a20d84eda3196'
 
     client = TelegramClient('session_name', api_id, api_hash)
-    client.start()
+    client.connect()
     user = client.get_entity('@{}'.format(username))
     for dialog in client.iter_dialogs():
         if dialog.title == title:
             client(InviteToChannelRequest(dialog, [user]))
-    client.disconnect()
+    # client.disconnect()
     # group = client(CreateChannelRequest(title=title, about=title, megagroup=True))
