@@ -31,5 +31,5 @@ def invite_to_telegram_chat(title, username):
     for dialog in client.iter_dialogs():
         if dialog.title == title:
             client(InviteToChannelRequest(dialog, [user]))
-
+    client.disconnect()
     # group = client(CreateChannelRequest(title=title, about=title, megagroup=True))
