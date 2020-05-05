@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model, password_validation
 from django.contrib.auth.models import BaseUserManager
 from phonenumber_field.serializerfields import PhoneNumberField
 from .models import OTP, SMSMessage
+from event.models import Category
 from files.models import UserImages
 from django.utils import timezone
 
@@ -18,13 +19,13 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta(object):
         model = User
-        fields = ('phone', 'email', 'password', 'date_joined')
+        fields = ('phone', 'email', 'first_name', 'last_name', 'password', 'telegram_username', 'date_joined', 'favorite_category')
         extra_kwargs = {'password': {'write_only': True}}
 
     @staticmethod
     def validate_email(value):
-        if not value.strip():
-            raise serializers.ValidationError("email should not be empty")
+        # if not value.strip():
+        #     raise serializers.ValidationError("email should not be empty")
         if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("email should be unique")
         return BaseUserManager.normalize_email(value)
@@ -36,15 +37,43 @@ class UserCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Phone is not verified")
         return value
 
+    @staticmethod
+    def validate_favorite_category(value):
+        print(value)
+        if len(value) < 1:
+            raise serializers.ValidationError("favorite_category at ")
+        return value
+
+    @staticmethod
+    def validate_first_name(value):
+        if value is None or len(value) == 0:
+            raise serializers.ValidationError("validate_first_name")
+        return value
+
+    @staticmethod
+    def validate_last_name(value):
+        if value is None or len(value) == 0:
+            raise serializers.ValidationError("validate_first_name")
+        return value
+
+
+
     def create(self, validated_data):
         phone = validated_data['phone']
-        email = validated_data['email']
+        email = ""
         password = validated_data['password']
+        first_name = validated_data['first_name']
+        last_name = validated_data['last_name']
+        telegram_username = validated_data.get('telegram_username')
+        favorite_category = validated_data.get('favorite_category')
 
-        user = User(phone=phone, email=email)
+        categories = Category.objects.filter(id__in=[c.id for c in favorite_category])
+
+        user = User(phone=phone, email=email, telegram_username=telegram_username, first_name=first_name, last_name=last_name)
         user.set_password(password)
         user.save()
-
+        for c in categories:
+            user.favorite_category.add(c)
         return user
 
 

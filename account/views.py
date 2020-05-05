@@ -19,6 +19,8 @@ from event.models import Event
 
 User = get_user_model()
 
+success_data = {'message': 'success'}
+
 
 class AuthViewSet(viewsets.GenericViewSet):
     serializer_class = EmptySerializer
@@ -61,7 +63,7 @@ class AuthViewSet(viewsets.GenericViewSet):
         request.user.set_password(serializer.validated_data['new_password'])
         request.user.save()
 
-        return response.Response(status=status.HTTP_204_NO_CONTENT)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
 
     @decorators.action(methods=['POST'], detail=False, permission_classes=[permissions.AllowAny, ])
     def check_phone(self, request):
@@ -86,7 +88,7 @@ class AuthViewSet(viewsets.GenericViewSet):
 
         serializer.save()
 
-        return response.Response(status=status.HTTP_204_NO_CONTENT)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
 
 
 class MyInfoView(generics.RetrieveAPIView):
@@ -148,7 +150,7 @@ class SubscribeView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         user = User.objects.get(id=kwargs.get('pk'))
         request.user.followers.add(user)
-        return response.Response(status=status.HTTP_204_NO_CONTENT)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
 
 
 class ViewedEventsView(generics.ListAPIView):
@@ -158,5 +160,12 @@ class ViewedEventsView(generics.ListAPIView):
     def get_queryset(self):
         return self.request.user.viewed_events.all().order_by('updated')
 
+
+class SavedEventsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        return self.request.user.saved_events.all()
 
 

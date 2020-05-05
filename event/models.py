@@ -7,6 +7,7 @@ User = get_user_model()
 class Category(models.Model):
     name = models.CharField(verbose_name="Name", max_length=255)
     is_active = models.BooleanField(verbose_name="Is active")
+    favorite_of = models.ManyToManyField(User, related_name='favorite_category', blank=True, related_query_name='favorite_category')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
@@ -16,7 +17,7 @@ class Event(models.Model):
     description = models.CharField(verbose_name="Brief description", max_length=1024)
     start = models.DateTimeField(verbose_name="Event begining")
     end = models.DateTimeField(verbose_name="Event ending")
-    price = models.CharField(verbose_name="Price", max_length=20)
+    price = models.IntegerField(verbose_name="Price")
     latitude = models.DecimalField(verbose_name="Latitude", max_digits=17, decimal_places=14)
     longitude = models.DecimalField(verbose_name="Longitude", max_digits=17, decimal_places=14)
     categories = models.ManyToManyField(Category, related_name="events")

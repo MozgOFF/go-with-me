@@ -17,7 +17,7 @@ class UserAdmin(DjangoUserAdmin):
 
     fieldsets = (
         (None, {'fields': ('phone', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'telegram_username')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
@@ -28,7 +28,7 @@ class UserAdmin(DjangoUserAdmin):
             'fields': ('phone', 'password1', 'password2'),
         }),
     )
-    list_display = ('phone', 'first_name', 'last_name', 'is_staff')
+    list_display = ('phone', 'first_name', 'last_name', 'is_staff', 'telegram_username')
     search_fields = ('phone', 'first_name', 'last_name')
     ordering = ('phone',)
     inlines = [FriendshipsInlineAdmin, ]
