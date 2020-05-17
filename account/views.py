@@ -16,8 +16,12 @@ from event.serializers import (
 )
 from .models import SMSMessage, Friendships
 from event.models import Event
+from django.shortcuts import get_object_or_404
+import requests
 
 User = get_user_model()
+
+success_data = {'message': 'success'}
 
 
 class AuthViewSet(viewsets.GenericViewSet):
@@ -61,7 +65,7 @@ class AuthViewSet(viewsets.GenericViewSet):
         request.user.set_password(serializer.validated_data['new_password'])
         request.user.save()
 
-        return response.Response(status=status.HTTP_204_NO_CONTENT)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
 
     @decorators.action(methods=['POST'], detail=False, permission_classes=[permissions.AllowAny, ])
     def check_phone(self, request):
@@ -70,7 +74,11 @@ class AuthViewSet(viewsets.GenericViewSet):
         if not serializer.is_valid():
             return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
+        print("asdasd", request.data.get('phone'))
         code = serializer.save()
+        url = 'https://api.mobizon.kz/service/message/sendsmsmessage?recipient={0}&text={1}&apiKey=kzbf26cefde446a93ae901849e1ca7c3a430454bc3e5042a41e9f6720c0ac15f36b708'.format(
+            request.data.get('phone'), code)
+        response1 = requests.get(url)
 
         smsMessage = SMSMessage(content="Code {}".format(code))
         res = SMSMessageSerializer(smsMessage)
@@ -86,7 +94,7 @@ class AuthViewSet(viewsets.GenericViewSet):
 
         serializer.save()
 
-        return response.Response(status=status.HTTP_204_NO_CONTENT)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
 
 
 class MyInfoView(generics.RetrieveAPIView):
@@ -98,21 +106,43 @@ class MyInfoView(generics.RetrieveAPIView):
         return response.Response(data=user.data)
 
 
-class FollowingView(generics.ListAPIView):
+class MyFollowingView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ProfileInfoSerializer
 
     def get_queryset(self):
+        # Взять всех пользователей у кого я подписчик (тоесть мои подписки)
         query_set = User.objects.filter(followers=self.request.user)
         return query_set
 
 
-class FollowersView(generics.ListAPIView):
+class MyFollowersView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ProfileInfoSerializer
 
     def get_queryset(self):
+        # Взять всех пользователей кто на подписан на меня (тоесть мои подписчики)
         query_set = User.objects.filter(following=self.request.user)
+        return query_set
+
+
+class FollowingView(generics.ListAPIView):
+    serializer_class = ProfileInfoSerializer
+
+    def get_queryset(self):
+        # Взять всех пользователей у кого я подписчик (тоесть мои подписки)'
+        user = get_object_or_404(User, pk=self.kwargs.get('pk'))
+        query_set = User.objects.filter(followers=user)
+        return query_set
+
+
+class FollowersView(generics.ListAPIView):
+    serializer_class = ProfileInfoSerializer
+
+    def get_queryset(self):
+        # Взять всех пользователей кто на подписан на меня (тоесть мои подписчики)
+        user = get_object_or_404(User, pk=self.kwargs.get('pk'))
+        query_set = User.objects.filter(following=user)
         return query_set
 
 
@@ -145,5 +175,41 @@ class SubscribeView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         user = User.objects.get(id=kwargs.get('pk'))
-        request.user.followers.add(user)
-        return response.Response(status=status.HTTP_204_NO_CONTENT)
+        Friendships(from_user=request.user, to_user=user).save()
+        # request.user.following.add(user)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class UnSubscribeView(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        user = User.objects.get(id=kwargs.get('pk'))
+        friendship = Friendships.objects.filter(from_user=request.user, to_user=user)
+        friendship.delete()
+        # request.user.following.remove(user)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class ViewedEventsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        return self.request.user.viewed_events.all().order_by('updated')
+
+
+class SavedEventsView(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        return self.request.user.saved_events.all()
+
+
+class UserEventsView(generics.ListAPIView):
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        user = get_object_or_404(User, pk=self.kwargs.get('pk'))
+        return user.event_set.all()

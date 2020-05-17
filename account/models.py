@@ -42,6 +42,12 @@ class User(AbstractUser):
                                        related_query_name='followers',
                                        through_fields=('from_user', 'to_user'))
 
+    # remove blank=True
+    latitude = models.DecimalField(verbose_name="Latitude", max_digits=17, decimal_places=14, null=True)
+    longitude = models.DecimalField(verbose_name="Longitude", max_digits=17, decimal_places=14, null=True)
+
+    telegram_username = models.CharField(verbose_name="telegram_username", max_length=100, blank=True, null=True)
+
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email']
 

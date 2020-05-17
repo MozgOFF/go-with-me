@@ -11,6 +11,9 @@ from event.views import (
     SubscribeOnEventView,
     UnsubscribeFromEventView,
     EventCategoriesView,
+    SpecialEventListView,
+    EventSubscribersView,
+    UnsubscribeUserFromEventView,
 )
 
 app_name = 'event'
@@ -18,7 +21,10 @@ urlpatterns = [
     path('create', EventCreateView.as_view()),
     path('categories', EventCategoriesView.as_view()),
     path('all/', EventListView.as_view()),
+    path('special', SpecialEventListView.as_view()),
     path('detail/<int:pk>/', EventDetailView.as_view()),
+    path('detail/<int:pk>/subscribers', EventSubscribersView.as_view()),
+    path('detail/<int:pk>/unsubscriber-user', UnsubscribeUserFromEventView.as_view()),
     path('detail/<int:pk>/comments/', EventCommentsView.as_view()),
     path('<int:pk>/saved-add', SaveEventView.as_view()),
     path('<int:pk>/saved-remove', RemoveEventView.as_view()),

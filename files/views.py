@@ -16,7 +16,7 @@ class EventImageListView(generics.ListAPIView):
     queryset = EventImage.objects.all()
 
 
-class UserImageUploadView(generics.UpdateAPIView):
+class UserImageUploadView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, ]
     serializer_class = UserImageSerializer
     queryset = UserImages.objects.all()
