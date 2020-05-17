@@ -178,3 +178,7 @@ class EventCommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['comment_set', ]
+
+
+class UnsubscribeFromEventSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()

@@ -137,7 +137,7 @@ class ConfirmPhoneSerializer(serializers.Serializer):
         otp = OTP.objects.get(phone=phone, code=code)
         # Вынести время жизни otp
         # продумать ответы ошибок
-        if timezone.now() - otp.updated > timezone.timedelta(minutes=1):
+        if timezone.now() - otp.updated > timezone.timedelta(minutes=10):
             raise serializers.ValidationError("Time is up")
 
         otp.verified = True

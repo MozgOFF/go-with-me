@@ -17,6 +17,7 @@ from event.serializers import (
 from .models import SMSMessage, Friendships
 from event.models import Event
 from django.shortcuts import get_object_or_404
+import requests
 
 User = get_user_model()
 
@@ -73,7 +74,11 @@ class AuthViewSet(viewsets.GenericViewSet):
         if not serializer.is_valid():
             return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
+        print("asdasd", request.data.get('phone'))
         code = serializer.save()
+        url = 'https://api.mobizon.kz/service/message/sendsmsmessage?recipient={0}&text={1}&apiKey=kzbf26cefde446a93ae901849e1ca7c3a430454bc3e5042a41e9f6720c0ac15f36b708'.format(
+            request.data.get('phone'), code)
+        response1 = requests.get(url)
 
         smsMessage = SMSMessage(content="Code {}".format(code))
         res = SMSMessageSerializer(smsMessage)
@@ -208,5 +213,3 @@ class UserEventsView(generics.ListAPIView):
     def get_queryset(self):
         user = get_object_or_404(User, pk=self.kwargs.get('pk'))
         return user.event_set.all()
-
-

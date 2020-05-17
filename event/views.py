@@ -4,14 +4,17 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import F
-from event.serializers import EventCreateSerializer, EventDetailSerializer, EventListSerializer, CategorySerializer
+from event.serializers import EventCreateSerializer, EventDetailSerializer, EventListSerializer, CategorySerializer, UnsubscribeFromEventSerializer
 from .models import Event, Category
 from .filters import EventFilter
 from comment.models import Comment
 from comment.serializers import CommentSerializer
 from account.serializers import ShortProfileInfoSerializer
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 
 success_data = {'message': 'success'}
+User = get_user_model()
 
 
 class EventFilteredView:
@@ -159,6 +162,40 @@ class UnsubscribeFromEventView(views.APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         event.first().subscribed_by.remove(request.user)
         return Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class UnsubscribeUserFromEventView(views.APIView):
+    permission_classes = [IsAuthenticated, ]
+    serializer_class = UnsubscribeFromEventSerializer
+
+    @staticmethod
+    def put(request, pk):
+        serializer = UnsubscribeFromEventSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        event = get_object_or_404(Event, pk=pk)
+        user = get_object_or_404(User, pk=serializer.data.get('user_id'))
+        event.subscribed_by.remove(user)
+        return Response(data=success_data, status=status.HTTP_200_OK)
+
+# def update(self, request, *args, **kwargs):
+    #     event = Event.objects.filter(id=kwargs.get('pk'))
+    #     if event.count() == 0:
+    #         return Response(status=status.HTTP_400_BAD_REQUEST)
+    #     user = User.objects.get(id=request.data.get('user_id'))
+    #     event.first().subscribed_by.remove(user)
+    #     event.first().save()
+    #     return super(UnsubscribeUserFromEventView, self).update(request)
+
+    #
+    # @staticmethod
+    # def patch(request, pk):
+    #     event = Event.objects.filter(id=pk)
+    #     if event.count() == 0:
+    #         return Response(status=status.HTTP_400_BAD_REQUEST)
+    #     user = User.objects.get(id=request.data.get())
+    #     event.first().subscribed_by.remove(request.user)
+    #     return Response(data=success_data, status=status.HTTP_200_OK)
+
 
 
 class EventCategoriesView(generics.ListAPIView):
