@@ -6,14 +6,14 @@ from telethon.tl.functions.channels import InviteToChannelRequest, CreateChannel
 from telethon.tl.functions.messages import ExportChatInviteRequest
 from .models import Event
 
-api_id = 1329156
-api_hash = '8fd6064629c2fe25b79a20d84eda3196'
+api_id = 1247519
+api_hash = 'c59b84c5e1c2fbbf341849a794c35690'
 
 
 @shared_task
 def create_telegram_chat(eid, desc):
 
-    with TelegramClient('session_name', api_id, api_hash) as client:
+    with TelegramClient('rus', api_id, api_hash) as client:
         title = 'Gowithme-' + str(eid)
         group = client(CreateChannelRequest(title=title, about=desc, megagroup=True))
         print("asdasdasddas,", dir(group))
