@@ -18,8 +18,8 @@ class Event(models.Model):
     start = models.DateTimeField(verbose_name="Event begining")
     end = models.DateTimeField(verbose_name="Event ending")
     price = models.IntegerField(verbose_name="Price")
-    latitude = models.DecimalField(verbose_name="Latitude", max_digits=17, decimal_places=14)
-    longitude = models.DecimalField(verbose_name="Longitude", max_digits=17, decimal_places=14)
+    latitude = models.DecimalField(verbose_name="Latitude", max_digits=20, decimal_places=16)
+    longitude = models.DecimalField(verbose_name="Longitude", max_digits=20, decimal_places=16)
     categories = models.ManyToManyField(Category, related_name="events")
     saved_by = models.ManyToManyField(User, related_name='saved_events', blank=True, related_query_name='saved_events')
     liked_by = models.ManyToManyField(User, related_name='liked_events', blank=True, related_query_name='liked_events')
@@ -33,6 +33,7 @@ class Event(models.Model):
                                        related_name='viewed_events',
                                        related_query_name='viewed_events',
                                        blank=True)
+    telegram_chat = models.CharField(max_length=256, blank=True)
     author = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE)
     view_counter = models.IntegerField(verbose_name='View counter', default=0)
     is_active = models.BooleanField(verbose_name="Is active", default=True)

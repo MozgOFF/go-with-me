@@ -6,6 +6,7 @@ from comment.models import Comment
 from comment.serializers import CommentSerializer
 from files.models import EventImage
 from account.serializers import ShortProfileInfoSerializer
+from event.tasks import create_telegram_chat
 
 User = get_user_model()
 
@@ -28,6 +29,30 @@ class EventCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = ['title', 'start', 'end', 'price', 'latitude', 'longitude', 'description', 'categories', 'author', 'images']
+
+    def create(self, validated_data):
+        title = validated_data['title']
+        new_event = Event(
+            title=title,
+            start=validated_data['start'],
+            end=validated_data['end'],
+            price=validated_data['price'],
+            latitude=validated_data['latitude'],
+            longitude=validated_data['longitude'],
+            description=validated_data['description'],
+            # categories=validated_data['categories'],
+            author=validated_data['author'],
+            # images=validated_data['images'],
+        )
+        new_event.save()
+        for i in validated_data['categories']:
+            new_event.categories.add(i)
+
+        for i in validated_data['images']:
+            new_event.images.add(i)
+
+        task_chat = create_telegram_chat.delay(new_event.id, title)
+        return new_event
 
 
 class EventImageSerializer(serializers.ModelSerializer):
@@ -143,7 +168,8 @@ class EventDetailSerializer(serializers.ModelSerializer):
                   'images',
                   'subscriptions_counter',
                   'is_subscribed',
-                  'is_liked']
+                  'is_liked',
+                  'telegram_chat']
 
 
 class EventCommentsSerializer(serializers.ModelSerializer):

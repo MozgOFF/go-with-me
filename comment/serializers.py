@@ -31,11 +31,12 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class CreateCommentSerializer(serializers.ModelSerializer):
-    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    author = CommentAuthorSerializer(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Comment
-        fields = ['content', 'event', 'author', 'parent']
+        fields = ['content', 'event', 'author', 'parent', 'created']
 
     def create(self, validated_data):
         content = validated_data['content']

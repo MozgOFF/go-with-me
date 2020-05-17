@@ -36,3 +36,4 @@ class UserAdmin(DjangoUserAdmin):
 
 admin.site.register(OTP)
 admin.site.register(SMSMessage)
+admin.site.register(Friendships)

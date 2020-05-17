@@ -9,9 +9,7 @@ from .models import Event, Category
 from .filters import EventFilter
 from comment.models import Comment
 from comment.serializers import CommentSerializer
-# from .telegram_chat_util import create_telegram_chat
-from event.tasks import create_telegram_chat, invite_to_telegram_chat
-from datetime import datetime, timedelta
+from account.serializers import ShortProfileInfoSerializer
 
 success_data = {'message': 'success'}
 
@@ -28,12 +26,6 @@ class EventCreateView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = EventCreateSerializer
 
-    def create(self, request, *args, **kwargs):
-        event_title = request.data.get('title')
-        print("event_title --------- ", event_title)
-        task_chat = create_telegram_chat.delay(event_title)
-        return super(EventCreateView, self).create(request)
-
 
 class EventListView(generics.ListAPIView):
     queryset = Event.objects.filter(is_active=True)
@@ -45,13 +37,13 @@ class EventListView(generics.ListAPIView):
     ordering_fields = ['start', 'view_counter', 'price', 'created']
     ordering = ['created']
 
-    # def list(self, request, *args, **kwargs):
-    #     print("EventListView list()")
-    #     t = datetime.utcnow() + timedelta(seconds=10)
-    #     task = h.apply_async(eta=t)
-    #     print(f"id={task.id}, state={task.state}, status={task.status}")
-    #
-    #     return super(EventListView, self).list(request)
+
+class EventSubscribersView(generics.ListAPIView):
+    serializer_class = ShortProfileInfoSerializer
+
+    def get_queryset(self):
+        return Event.objects.get(id=self.kwargs['pk']).subscribed_by.all()
+
 
 
 class SpecialEventListView(generics.ListAPIView):
@@ -67,7 +59,6 @@ class SpecialEventListView(generics.ListAPIView):
         categories = self.request.user.favorite_category.all()
         events = Event.objects.filter(categories__in=categories)
         return events
-
 
 
 class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -153,10 +144,6 @@ class SubscribeOnEventView(views.APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         event = event_set.first()
         event.subscribed_by.add(request.user)
-
-        telegram_username = request.user.telegram_username
-        if telegram_username != "":
-            invite_to_telegram_chat.delay(event.title, telegram_username)
 
         # TODO notify author
         return Response(data=success_data, status=status.HTTP_200_OK)

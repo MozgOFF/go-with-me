@@ -56,8 +56,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("validate_first_name")
         return value
 
-
-
     def create(self, validated_data):
         phone = validated_data['phone']
         email = ""
@@ -69,7 +67,11 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
         categories = Category.objects.filter(id__in=[c.id for c in favorite_category])
 
-        user = User(phone=phone, email=email, telegram_username=telegram_username, first_name=first_name, last_name=last_name)
+        user = User(phone=phone,
+                    email=email,
+                    telegram_username=telegram_username,
+                    first_name=first_name,
+                    last_name=last_name)
         user.set_password(password)
         user.save()
         for c in categories:
@@ -181,6 +183,17 @@ class ProfileInfoSerializer(serializers.ModelSerializer):
     following_count = serializers.SerializerMethodField()
     images = serializers.SerializerMethodField()
     saved_events_count = serializers.SerializerMethodField()
+    is_me_follower = serializers.SerializerMethodField()
+
+    def get_is_me_follower(self, obj):
+        request = self.context.get('request')
+        if request is None:
+            return False
+        user = request.user
+        if user.id is None:
+            return False
+
+        return obj in user.following.get_queryset()
 
     @staticmethod
     def get_events_created_count(obj):

@@ -16,6 +16,7 @@ from event.serializers import (
 )
 from .models import SMSMessage, Friendships
 from event.models import Event
+from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 
@@ -100,7 +101,7 @@ class MyInfoView(generics.RetrieveAPIView):
         return response.Response(data=user.data)
 
 
-class FollowingView(generics.ListAPIView):
+class MyFollowingView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ProfileInfoSerializer
 
@@ -110,13 +111,33 @@ class FollowingView(generics.ListAPIView):
         return query_set
 
 
-class FollowersView(generics.ListAPIView):
+class MyFollowersView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ProfileInfoSerializer
 
     def get_queryset(self):
         # Взять всех пользователей кто на подписан на меня (тоесть мои подписчики)
         query_set = User.objects.filter(following=self.request.user)
+        return query_set
+
+
+class FollowingView(generics.ListAPIView):
+    serializer_class = ProfileInfoSerializer
+
+    def get_queryset(self):
+        # Взять всех пользователей у кого я подписчик (тоесть мои подписки)'
+        user = get_object_or_404(User, pk=self.kwargs.get('pk'))
+        query_set = User.objects.filter(followers=user)
+        return query_set
+
+
+class FollowersView(generics.ListAPIView):
+    serializer_class = ProfileInfoSerializer
+
+    def get_queryset(self):
+        # Взять всех пользователей кто на подписан на меня (тоесть мои подписчики)
+        user = get_object_or_404(User, pk=self.kwargs.get('pk'))
+        query_set = User.objects.filter(following=user)
         return query_set
 
 
@@ -149,7 +170,19 @@ class SubscribeView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         user = User.objects.get(id=kwargs.get('pk'))
-        request.user.followers.add(user)
+        Friendships(from_user=request.user, to_user=user).save()
+        # request.user.following.add(user)
+        return response.Response(data=success_data, status=status.HTTP_200_OK)
+
+
+class UnSubscribeView(generics.CreateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        user = User.objects.get(id=kwargs.get('pk'))
+        friendship = Friendships.objects.filter(from_user=request.user, to_user=user)
+        friendship.delete()
+        # request.user.following.remove(user)
         return response.Response(data=success_data, status=status.HTTP_200_OK)
 
 
@@ -167,5 +200,13 @@ class SavedEventsView(generics.ListAPIView):
 
     def get_queryset(self):
         return self.request.user.saved_events.all()
+
+
+class UserEventsView(generics.ListAPIView):
+    serializer_class = EventListSerializer
+
+    def get_queryset(self):
+        user = get_object_or_404(User, pk=self.kwargs.get('pk'))
+        return user.event_set.all()
 
 
