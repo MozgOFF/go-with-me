@@ -80,18 +80,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class PasswordChangeSerializer(serializers.Serializer):
-    current_password = serializers.CharField(required=True)
-    new_password = serializers.CharField(required=True)
-
-    def validate_current_password(self, value):
-        if not self.context['request'].user.check_password(value):
-            raise serializers.ValidationError("Current password does not match")
-        return value
-
-    @staticmethod
-    def validate_new_password(value):
-        password_validation.validate_password(value)
-        return value
+    password = serializers.CharField(required=True)
 
 
 class CheckPhoneSerializer(serializers.Serializer):
@@ -103,6 +92,23 @@ class CheckPhoneSerializer(serializers.Serializer):
 
         if User.objects.filter(phone=value).exists():
             raise serializers.ValidationError("Phone already exists")
+        return value
+
+    def create(self, validated_data):
+        phone = validated_data['phone']
+        code = OTP.generate(phone=phone)
+        return code
+
+
+class RecoveryCheckPhoneSerializer(serializers.Serializer):
+    phone = PhoneNumberField(required=True)
+
+    @staticmethod
+    def validate_phone(value):
+        print("&&&validate_phone", value)
+
+        if not User.objects.filter(phone=value).exists():
+            raise serializers.ValidationError("Phone not exists")
         return value
 
     def create(self, validated_data):

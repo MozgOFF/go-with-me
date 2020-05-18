@@ -10,6 +10,7 @@ from .serializers import (
     SMSMessageSerializer,
     ConfirmPhoneSerializer,
     ProfileInfoSerializer,
+    RecoveryCheckPhoneSerializer,
 )
 from event.serializers import (
     EventListSerializer,
@@ -30,6 +31,7 @@ class AuthViewSet(viewsets.GenericViewSet):
         'register': UserCreateSerializer,
         'password_change': PasswordChangeSerializer,
         'check_phone': CheckPhoneSerializer,
+        'recovery_check_phone': RecoveryCheckPhoneSerializer,
         'confirm_phone': ConfirmPhoneSerializer,
     }
 
@@ -53,7 +55,7 @@ class AuthViewSet(viewsets.GenericViewSet):
         }
         return response.Response(res, status.HTTP_201_CREATED)
 
-    @decorators.action(methods=['POST'], detail=False, permission_classes=[permissions.IsAuthenticated, ])
+    @decorators.action(methods=['POST'], detail=False)
     def password_change(self, request):
 
         serializer = self.get_serializer(data=request.data)
@@ -62,10 +64,26 @@ class AuthViewSet(viewsets.GenericViewSet):
         if not serializer.is_valid():
             return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
 
-        request.user.set_password(serializer.validated_data['new_password'])
+        request.user.set_password(serializer.validated_data['password'])
         request.user.save()
 
         return response.Response(data=success_data, status=status.HTTP_200_OK)
+
+    @decorators.action(methods=['POST'], detail=False, permission_classes=[permissions.AllowAny, ])
+    def recovery_check_phone(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            return response.Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+        code = serializer.save()
+        url = 'https://api.mobizon.kz/service/message/sendsmsmessage?recipient={0}&text={1}&apiKey=kzbf26cefde446a93ae901849e1ca7c3a430454bc3e5042a41e9f6720c0ac15f36b708'.format(
+            request.data.get('phone'), code)
+        response1 = requests.get(url)
+
+        smsMessage = SMSMessage(content="Code {}".format(code))
+        res = SMSMessageSerializer(smsMessage)
+
+        return response.Response(res.data, status.HTTP_200_OK)
 
     @decorators.action(methods=['POST'], detail=False, permission_classes=[permissions.AllowAny, ])
     def check_phone(self, request):
