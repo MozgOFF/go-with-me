@@ -3,6 +3,12 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+EVENT_STATUS = (
+    (1, 'In review'),
+    (2, 'Accepted'),
+    (3, 'Rejected'),
+)
+
 
 class Category(models.Model):
     name = models.CharField(verbose_name="Name", max_length=255)
@@ -36,6 +42,7 @@ class Event(models.Model):
     telegram_chat = models.CharField(max_length=256, blank=True)
     author = models.ForeignKey(User, verbose_name="Author", on_delete=models.CASCADE)
     view_counter = models.IntegerField(verbose_name='View counter', default=0)
+    status = models.IntegerField(verbose_name="Moderate status", choices=EVENT_STATUS, default=1)
     is_active = models.BooleanField(verbose_name="Is active", default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)

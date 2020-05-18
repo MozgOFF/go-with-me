@@ -28,7 +28,7 @@ class UserAdmin(DjangoUserAdmin):
             'fields': ('phone', 'password1', 'password2'),
         }),
     )
-    list_display = ('phone', 'first_name', 'last_name', 'is_staff', 'telegram_username')
+    list_display = ('phone', 'first_name', 'last_name', 'is_staff')
     search_fields = ('phone', 'first_name', 'last_name')
     ordering = ('phone',)
     inlines = [FriendshipsInlineAdmin, ]

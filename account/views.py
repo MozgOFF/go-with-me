@@ -161,7 +161,7 @@ class FollowingEventsView(generics.ListAPIView):
     def get_queryset(self):
         request = self.request
         query_set_followers = User.objects.filter(followers=request.user)
-        query_set = Event.objects.filter(author__in=query_set_followers)
+        query_set = Event.objects.filter(author__in=query_set_followers, status=2)
         return query_set
 
 
@@ -212,4 +212,4 @@ class UserEventsView(generics.ListAPIView):
 
     def get_queryset(self):
         user = get_object_or_404(User, pk=self.kwargs.get('pk'))
-        return user.event_set.all()
+        return user.event_set.filter(status=2)

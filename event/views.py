@@ -31,7 +31,7 @@ class EventCreateView(generics.CreateAPIView):
 
 
 class EventListView(generics.ListAPIView):
-    queryset = Event.objects.filter(is_active=True)
+    queryset = Event.objects.filter(is_active=True, status=2)
     serializer_class = EventListSerializer
     pagination_class = PageNumberPagination
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
@@ -60,7 +60,7 @@ class SpecialEventListView(generics.ListAPIView):
 
     def get_queryset(self):
         categories = self.request.user.favorite_category.all()
-        events = Event.objects.filter(categories__in=categories)
+        events = Event.objects.filter(categories__in=categories, status=2)
         return events
 
 

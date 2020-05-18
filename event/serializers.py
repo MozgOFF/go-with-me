@@ -107,11 +107,23 @@ class EventListSerializer(serializers.ModelSerializer):
 class EventDetailSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True)
     is_saved = serializers.SerializerMethodField()
+    is_mine = serializers.SerializerMethodField()
     author = ShortProfileInfoSerializer()
     images = serializers.SerializerMethodField()
     subscriptions_counter = serializers.SerializerMethodField()
     is_subscribed = serializers.SerializerMethodField()
     is_liked = serializers.SerializerMethodField()
+
+    def get_is_mine(self, obj):
+        request = self.context.get('request')
+        if request is None:
+            return False
+        user = request.user
+        if user.id is None:
+            return False
+
+        return obj.author.id == user.id
+
 
     @staticmethod
     def get_subscriptions_counter(obj):
@@ -169,7 +181,9 @@ class EventDetailSerializer(serializers.ModelSerializer):
                   'subscriptions_counter',
                   'is_subscribed',
                   'is_liked',
-                  'telegram_chat']
+                  'telegram_chat',
+                  'status',
+                  'is_mine']
 
 
 class EventCommentsSerializer(serializers.ModelSerializer):
